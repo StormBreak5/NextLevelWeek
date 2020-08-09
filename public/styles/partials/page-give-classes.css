@@ -107,6 +107,10 @@
     background: var(--color-secondary-dark);
 }
 
+#page-give-classes main footer button img {
+    margin-right: 2rem;
+}
+
 .schedule-item+.schedule-item {
     margin-top: 3.2rem;
     padding-top: 3.2rem;
@@ -146,6 +150,11 @@
     #page-give-classes main fieldset {
         padding: 0 64px;
     }
+
+    #page-give-classes main footer button img {
+        margin-right: 1rem;
+    }
+ 
 
     .schedule-item {
         display: grid;
