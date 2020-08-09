@@ -18,6 +18,8 @@
     --color-box-base: #FFFFFF;
     --color-box-footer: #FAFAFC;
     --color-small-info: #C1BCCC;
+    --color-remove: #f12f2f;
+    --color-remove-dark: #ff0000;
     font-size: 60%; /* controle das medidas rem */
 }
 

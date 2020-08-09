@@ -9,8 +9,8 @@ function pageLanding(req, res) {
 async function pageStudy(req, res) {
     const filters = req.query
 
-    if(!filters.subject || !filters.weekday || !filters.time) {
-        return res.render("study.html", { filters, subjects, weekdays})
+    if (!filters.subject || !filters.weekday || !filters.time) {
+        return res.render("study.html", { filters, subjects, weekdays })
     }
 
     const timeToMinutes = convertHoursToMinutes(filters.time)
@@ -45,13 +45,13 @@ async function pageStudy(req, res) {
 }
 
 function pageGiveClasses(req, res) {
-    
-    return res.render("give-classes.html", {subjects, weekdays})
+
+    return res.render("give-classes.html", { subjects, weekdays })
 }
 
 async function saveClasses(req, res) {
     const createProffy = require('./database/createProffy')
-    
+
     const proffyValue = {
         name: req.body.name,
         avatar: req.body.avatar,
@@ -68,8 +68,8 @@ async function saveClasses(req, res) {
 
         return {
             weekday,
-            time_from:convertHoursToMinutes(req.body.time_from[index]),
-            time_to:convertHoursToMinutes(req.body.time_to[index])
+            time_from: convertHoursToMinutes(req.body.time_from[index]),
+            time_to: convertHoursToMinutes(req.body.time_to[index])
         }
     })
 
@@ -81,16 +81,29 @@ async function saveClasses(req, res) {
         queryString += "&weekday=" + req.body.weekday[0]
         queryString += "&time=" + req.body.time_from[0]
 
-        return res.redirect("/study" + queryString)
+        return res.redirect("/success" + queryString)
 
     } catch (error) {
         console.log(error)
     }
 }
 
+function pageSuccess(req, res) {
+    const filters = req.query
+
+    if (filters.subject) {
+        queryString = "?subject=" + filters.subject
+        queryString += "&weekday=" + filters.weekday
+        queryString += "&time=" + filters.time
+    }
+
+    return res.render("success.html", { queryString })
+}
+
 module.exports = {
     pageLanding,
     pageStudy,
     pageGiveClasses,
-    saveClasses
+    saveClasses,
+    pageSuccess
 }
